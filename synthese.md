@@ -9,3 +9,8 @@ Dans ce document, nous passerons en revue différentes solutions libres de gesti
 - Les options de présentation des données sous forme de **dashboard**
 
 L'objectif de cette synthèse est de fournir une vue d'ensemble des **solutions open-source** disponibles afin de mieux comprendre laquelle pourrait répondre à vos besoins spécifiques en matière de gestion des logs.
+
+
+# Centralisation des logs
+# Installations et utilisations des logs
+# Les dashboard
