@@ -8,8 +8,6 @@ Il existe de nombreuses solutions de gestion des logs aujourd'hui, avec des fonc
 
 Dans un premier temps, nous allons faire un résumé des différentes solutions gratuites disponibles, en soulignant leurs caractéristiques principales, leurs communautés d'utilisateurs, ainsi que leurs avantages et inconvénients. Ensuite, nous allons créer un fichier Docker pour mettre en place un environnement simple de collecte de logs basé sur l'une de ces solutions. Ce projet sera réalisé en équipe, ce qui nous permettra de collaborer et d'apprendre ensemble, tout en respectant les exigences de documentation et de rendu sur la plateforme Universitice.
 
-# Objectif
-
 ## Objectif de ce projet
 
 L'objectif de ce projet est de se familiariser avec les solutions de collecte, de centralisation et de présentation des logs générés par des applications sur des serveurs. Nous souhaitons acquérir une compréhension approfondie des différentes options disponibles et évaluer leurs fonctionnalités pour déterminer laquelle est la plus adaptée à nos besoins.
@@ -31,7 +29,7 @@ En résumé, ce projet a pour but d'acquérir des compétences pratiques dans la
 
 # Déroulement de la SAE
 
-# Problèmes renconctrés
+# Problèmes rencontrés
 
 # Conclusion
 Documents de synthèse
