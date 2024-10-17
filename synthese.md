@@ -8,8 +8,24 @@ Aujourd'hui, je vais vous présenter différents outils qui jouent un rôle clé
 
 La première catégorie d'outils que je vais vous présenter concerne ceux qui collectent les logs, c'est-à-dire qui capturent les événements depuis diverses sources (systèmes, applications, serveurs) pour ensuite les traiter et les transmettre.
 
-- **Fluentd** : Un outil flexible et open-source capable de collecter les logs de multiples environnements, de les transformer et de les envoyer vers différents systèmes de stockage et d'analyse.
-- **Logstash** : Une autre solution puissante qui s'intègre facilement à l'environnement ELK (Elasticsearch, Logstash, Kibana). Il permet de collecter, transformer et acheminer les logs vers Elasticsearch ou d'autres destinations.
+### Fluentd
+- **Avantages** :
+  - Open-source et flexible, supporte de nombreuses sources de données.
+  - Permet de transformer et d’enrichir les logs avant de les envoyer à différentes destinations.
+  - S’intègre facilement avec les systèmes de cloud comme AWS, GCP, etc.
+  - Haute scalabilité et peut gérer de grands volumes de logs.
+
+- **Défauts** :
+  - La configuration peut devenir complexe dans des scénarios avancés.
+  - Peut nécessiter plus de ressources serveur lors de transformations lourdes.
+  - Nécessite une bonne maîtrise pour gérer efficacement les plugins.
+
+- **Utilisation pour** :
+  - Collecte de logs dans des environnements distribués et hétérogènes (cloud, microservices, conteneurs).
+  - Centralisation des logs d’applications cloud-native ou basées sur Kubernetes.
+
+- **Conclusion** :
+  Fluentd est un outil puissant pour la collecte de logs multi-sources, offrant une grande flexibilité et des capacités de transformation, mais nécessite une bonne expertise pour des configurations complexes.
 
 ## Outils de centralisation des logs
 
