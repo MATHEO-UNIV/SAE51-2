@@ -1,7 +1,5 @@
 ## Introduction
 
-Bonjour à tous,
-
 Aujourd'hui, je vais vous parler de plusieurs outils qui sont importants pour gérer les logs. La gestion des logs est essentielle pour surveiller les systèmes et applications. Je vais vous présenter trois types d'outils : ceux qui collectent les logs, ceux qui les centralisent, et ceux qui les analysent et les visualisent.
 
 ---
