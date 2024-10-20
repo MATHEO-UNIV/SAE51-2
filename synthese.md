@@ -139,4 +139,6 @@ Ces outils permettent d’analyser et de visualiser les logs à l’aide de tabl
 
 ## Conclusion
 
-La gestion des logs est essentielle pour surveiller et améliorer nos systèmes. Chaque outil présenté offre des avantages spécifiques selon les besoins. Nous allons maintenant explorer comment les intégrer dans nos environnements.
+La gestion des logs est essentielle pour surveiller et améliorer nos systèmes. Chaque outil présenté offre des avantages spécifiques selon les besoins. 
+
+Dans notre cas, nous avons choisi d'utiliser Promtail, Loki, et Grafana car ils sont les mieux adaptés à nos besoins en matière de collecte, centralisation et visualisation des logs.
