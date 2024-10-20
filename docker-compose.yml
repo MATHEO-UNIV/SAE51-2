@@ -1,14 +1,24 @@
 version: '3.7'
 
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "8080:80"  # Redirige le port 80 d’Nginx vers le port 8080
+    volumes:
+      - ./nginx/log:/var/log/nginx
+    networks:
+      - loki-net
+
   loki:
     image: grafana/loki:2.8.1
     container_name: loki
     ports:
       - "3100:3100"
     volumes:
-      - ./loki-config.yaml:/etc/loki/loki-config.yaml  # Assure-toi que c'est bien un fichier
-      - ./loki:/loki  # Montée du répertoire pour stocker les données
+      - ./loki-config.yaml:/etc/loki/loki-config.yaml
+      - ./loki:/loki  # Dossier pour stocker les données
     command: -config.file=/etc/loki/loki-config.yaml
 
   promtail:
@@ -16,8 +26,8 @@ services:
     container_name: promtail
     volumes:
       - /var/log:/var/log
-      - ./promtail-config.yaml:/etc/promtail/promtail-config.yaml  # Assure-toi que c'est bien un fichier
-      - promtail-data:/etc/promtail  # Volume pour les données de Promtail
+      - ./promtail-config.yaml:/etc/promtail/promtail-config.yaml
+      - promtail-data:/etc/promtail  # Dossier pour les données de Promtail
     command: -config.file=/etc/promtail/promtail-config.yaml
 
   grafana:
@@ -28,7 +38,11 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - grafana-data:/var/lib/grafana  # Volume pour les données de Grafana
+      - grafana-data:/var/lib/grafana  # Dossier pour les données de Grafana
+
+networks:
+  loki-net:
+    driver: bridge
 
 volumes:
   grafana-data:
