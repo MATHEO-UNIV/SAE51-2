@@ -1,6 +1,6 @@
 ## Introduction
 
-Aujourd'hui, je vais vous parler de plusieurs outils qui sont importants pour gérer les logs. La gestion des logs est essentielle pour surveiller les systèmes et applications. Je vais vous présenter trois types d'outils : ceux qui collectent les logs, ceux qui les centralisent, et ceux qui les analysent et les visualisent.
+Dans ce document, nous allons vous parler de plusieurs outils qui sont importants pour gérer les logs. La gestion des logs est essentielle pour surveiller les systèmes et applications. Je vais vous présenter trois types d'outils : ceux qui collectent les logs, ceux qui les centralisent, et ceux qui les analysent et les visualisent.
 
 ---
 
@@ -38,6 +38,24 @@ Ces outils récupèrent les logs des systèmes et applications pour ensuite les 
 - **Conclusion** :  
   Logstash est idéal pour des environnements complexes, surtout avec Elasticsearch, mais consomme beaucoup de ressources.
 
+#### Promtail
+
+- **Avantages** :  
+  - Outil conçu pour envoyer des logs vers Loki.
+  - Facile à configurer et à intégrer avec Grafana et Loki.
+  - Supporte plusieurs formats de logs, notamment des fichiers journaux locaux.
+  - Léger et performant pour des environnements cloud-native.
+
+- **Défauts** :  
+  - Moins flexible que Fluentd ou Logstash pour des scénarios complexes.
+  - Fonctionnalités limitées sans Loki.
+
+- **Conclusion** :  
+  Promtail est idéal pour les environnements qui utilisent Grafana et Loki, mais est moins adapté pour des besoins de collecte plus complexes. 
+
+---
+
+## Outils de centralisation des logs
 ---
 
 ### Outils de centralisation des logs
@@ -70,6 +88,21 @@ Ces outils regroupent les logs en un seul endroit, ce qui facilite leur gestion 
 
 - **Conclusion** :  
   Papertrail est parfait pour les petites équipes, mais peut ne pas convenir aux entreprises plus grandes.
+
+#### Loki
+
+- **Avantages** :  
+  - S'intègre parfaitement avec Grafana pour la visualisation des logs.
+  - Conçu pour stocker et centraliser les logs de manière efficace, sans indexer toutes les données (économie de ressources).
+  - Idéal pour les environnements cloud-native.
+  - Open-source et facilement extensible.
+
+- **Défauts** :  
+  - Moins performant pour des recherches complexes par rapport à des solutions comme Elasticsearch.
+  - Nécessite Promtail ou un autre collecteur pour l'ingestion des logs.
+
+- **Conclusion** :  
+  Loki est une excellente solution pour centraliser et visualiser les logs dans des environnements cloud-native, particulièrement lorsqu'il est utilisé avec Grafana et Promtail.
 
 ---
 
@@ -107,5 +140,3 @@ Ces outils permettent d’analyser et de visualiser les logs à l’aide de tabl
 ## Conclusion
 
 La gestion des logs est essentielle pour surveiller et améliorer nos systèmes. Chaque outil présenté offre des avantages spécifiques selon les besoins. Nous allons maintenant explorer comment les intégrer dans nos environnements.
-
-Merci pour votre attention. Je suis prêt à répondre à vos questions avant de vous montrer une démonstration.
