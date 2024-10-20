@@ -32,36 +32,36 @@ L'objectif était de permettre la surveillance en temps réel des logs à partir
 
 Déroulement du Projet :
 
-1. Configuration Initiale des Services
+1. Configuration Initiale des Services :
 Choix des outils : Pour ce projet, Loki a été choisi pour la centralisation et le stockage des logs, Promtail pour la collecte des logs à partir de différents environnements, et Grafana pour la visualisation et la gestion des tableaux de bord.
 Mise en place de Docker Compose : Un fichier docker-compose.yaml a été créé pour déployer automatiquement Loki, Promtail et Grafana dans des conteneurs séparés. Ce fichier inclut les volumes nécessaires pour persister les données et monter les fichiers de configuration.
 
-2. Problèmes Rencontrés
+2. Problèmes Rencontrés :
 Problèmes liés aux permissions
 Problème : Dès le départ, des erreurs de permission ont été rencontrées, notamment dans les logs de Grafana et Loki, qui n'étaient pas capables d'écrire dans les répertoires spécifiés, tels que /var/lib/grafana pour Grafana, et les répertoires de stockage de Loki.
 Résolution : Les permissions des dossiers locaux ont été ajustées en utilisant la commande chmod 777 pour permettre à Docker d'accéder et d'écrire dans ces répertoires. Cette solution a permis de résoudre les problèmes de droits d'accès pour Grafana et Loki, mais pourrait poser un problème de sécurité sur des environnements de production. Une solution plus propre serait d'ajuster les propriétaires des fichiers avec chown.
 
-Problèmes de configuration avec Loki
+Problèmes de configuration avec Loki :
 Problème : Loki n’a pas réussi à démarrer correctement en raison de configurations erronées dans le fichier loki-config.yaml. Les erreurs incluaient des champs mal configurés comme http, grpc, ou encore des périodes d'indexation inadéquates avec boltdb-shipper.
 Résolution : Les fichiers de configuration ont été corrigés pour se conformer aux attentes de Loki, en particulier en ajustant la configuration du stockage, en spécifiant une période d'indexation de 24 heures, et en vérifiant la structure du fichier YAML.
 
-Problèmes avec Promtail
+Problèmes avec Promtail :
 Problème : Promtail a rencontré des erreurs similaires concernant l'absence de fichier de configuration lors du montage des volumes, ainsi que des problèmes d'accès à certains chemins.
 Résolution : La structure des volumes montés a été corrigée dans le fichier docker-compose.yaml, en s’assurant que le fichier promtail-config.yaml soit correctement monté dans le conteneur à l’emplacement attendu.
 
-3. Problème de création de dossiers par Loki
+3. Problème de création de dossiers par Loki :
 Problème : Une erreur persistait concernant la création du dossier WAL pour Loki, où le message "permission denied" apparaissait lors de la création du répertoire /wal.
 Résolution : Les permissions du système de fichiers ont été ajustées pour permettre à Loki de créer les répertoires nécessaires. En modifiant les permissions des dossiers via chmod 777 et en vérifiant les montages de volumes, le problème a été résolu. Cependant, cela pourrait nécessiter une optimisation future avec des permissions plus restrictives pour des raisons de sécurité.
 
-4. Problème d’incompatibilité de la configuration d'indexation
+4. Problème d’incompatibilité de la configuration d'indexation :
 Problème : L’erreur « invalid schema config: boltdb-shipper works best with 24h periodic index config » indiquait que la configuration d'indexation de Loki n'était pas conforme aux bonnes pratiques pour le stockage boltdb-shipper.
 Résolution : La configuration a été modifiée pour s'aligner sur la recommandation d'une période d'indexation de 24 heures, en modifiant la section index dans le fichier loki-config.yaml.
 
-5. Erreur de création des répertoires pour les chunks
+5. Erreur de création des répertoires pour les chunks :
 Problème : Loki a tenté de créer des répertoires pour stocker les chunks, mais a échoué en raison de permissions insuffisantes ou d'une mauvaise configuration des montages.
 Résolution : Les montages des volumes ont été corrigés, et les permissions des répertoires locaux ont été modifiées pour permettre l'écriture dans les répertoires de stockage des chunks.
 
-Conclusion
+Conclusion :
 Le projet a mis en lumière plusieurs aspects techniques clés concernant la configuration de systèmes de logs distribués, notamment l'importance des permissions et de la configuration correcte des volumes pour les services conteneurisés. Bien que des erreurs liées aux permissions et à la configuration des fichiers YAML aient ralenti l'implémentation, ces obstacles ont été surmontés grâce à des ajustements successifs.
 
 Importance des permissions : La gestion des permissions sur les systèmes de fichiers sous Docker est cruciale, et l'utilisation de chmod 777, bien qu'efficace pour les tests locaux, n'est pas idéale en production.
