@@ -37,8 +37,7 @@ Choix des outils : Pour ce projet, Loki a été choisi pour la centralisation et
 Mise en place de Docker Compose : Un fichier docker-compose.yaml a été créé pour déployer automatiquement Loki, Promtail et Grafana dans des conteneurs séparés. Ce fichier inclut les volumes nécessaires pour persister les données et monter les fichiers de configuration.
 
 2. Problèmes Rencontrés :
-Problèmes liés aux permissions
-Problème : Dès le départ, des erreurs de permission ont été rencontrées, notamment dans les logs de Grafana et Loki, qui n'étaient pas capables d'écrire dans les répertoires spécifiés, tels que /var/lib/grafana pour Grafana, et les répertoires de stockage de Loki.
+Problèmes liés aux permissions : Dès le départ, des erreurs de permission ont été rencontrées, notamment dans les logs de Grafana et Loki, qui n'étaient pas capables d'écrire dans les répertoires spécifiés, tels que /var/lib/grafana pour Grafana, et les répertoires de stockage de Loki.
 Résolution : Les permissions des dossiers locaux ont été ajustées en utilisant la commande chmod 777 pour permettre à Docker d'accéder et d'écrire dans ces répertoires. Cette solution a permis de résoudre les problèmes de droits d'accès pour Grafana et Loki, mais pourrait poser un problème de sécurité sur des environnements de production. Une solution plus propre serait d'ajuster les propriétaires des fichiers avec chown.
 
 Problèmes de configuration avec Loki :
