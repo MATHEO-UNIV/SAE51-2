@@ -27,9 +27,9 @@ En explorant ces solutions, nous allons :
 En résumé, ce projet a pour but d'acquérir des compétences pratiques dans la gestion des logs tout en favorisant la collaboration et l'apprentissage en équipe.
 
 
-# Déroulement de la SAE
+## Déroulement de la SAE
 
-# Problèmes rencontrés
+## Problèmes rencontrés
 
-# Conclusion
+## Conclusion
 Documents de synthèse
