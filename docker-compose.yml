@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  loki:
+    image: grafana/loki:2.8.1
+    container_name: loki
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki-config.yaml:/etc/loki/loki-config.yaml  # Assure-toi que c'est bien un fichier
+      - ./loki:/loki  # Montée du répertoire pour stocker les données
+    command: -config.file=/etc/loki/loki-config.yaml
+
+  promtail:
+    image: grafana/promtail:2.8.1
+    container_name: promtail
+    volumes:
+      - /var/log:/var/log
+      - ./promtail-config.yaml:/etc/promtail/promtail-config.yaml  # Assure-toi que c'est bien un fichier
+      - promtail-data:/etc/promtail  # Volume pour les données de Promtail
+    command: -config.file=/etc/promtail/promtail-config.yaml
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana  # Volume pour les données de Grafana
+
+volumes:
+  grafana-data:
+  loki-data:
+  promtail-data:
