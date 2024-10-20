@@ -66,7 +66,8 @@ Le projet a mis en lumière plusieurs aspects techniques clés concernant la con
 Importance des permissions : La gestion des permissions sur les systèmes de fichiers sous Docker est cruciale, et l'utilisation de chmod, bien qu'efficace pour les tests locaux, n'est pas idéale en production.
 Précision dans la configuration : Les fichiers YAML doivent être soigneusement rédigés et conformes aux spécifications des services sous peine de dysfonctionnements.
 Utilisation des bonnes pratiques : L'utilisation de boltdb-shipper nécessite des périodes d'indexation de 24h pour assurer un bon fonctionnement, comme recommandé par Loki.
-Améliorations Futures
+
+Améliorations Futures :
 Automatiser la configuration des volumes et des permissions pour rendre l’installation reproductible sur d’autres machines sans ajustements manuels.
 Tester l'intégration avec plusieurs sources de logs pour une centralisation plus étendue dans un environnement distribué.
 Ce projet, bien que ponctué de problèmes techniques, a permis de mettre en place un système fonctionnel de collecte et de visualisation des logs avec Grafana, Loki et Promtail.
