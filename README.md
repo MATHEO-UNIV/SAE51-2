@@ -38,7 +38,7 @@ Mise en place de Docker Compose : Un fichier docker-compose.yaml a été créé 
 
 2. Problèmes Rencontrés :
 Problèmes liés aux permissions : Dès le départ, des erreurs de permission ont été rencontrées, notamment dans les logs de Grafana et Loki, qui n'étaient pas capables d'écrire dans les répertoires spécifiés, tels que /var/lib/grafana pour Grafana, et les répertoires de stockage de Loki.
-Résolution : Les permissions des dossiers locaux ont été ajustées en utilisant la commande chmod 777 pour permettre à Docker d'accéder et d'écrire dans ces répertoires. Cette solution a permis de résoudre les problèmes de droits d'accès pour Grafana et Loki, mais pourrait poser un problème de sécurité sur des environnements de production. Une solution plus propre serait d'ajuster les propriétaires des fichiers avec chown.
+Résolution : Les permissions des dossiers locaux ont été ajustées en utilisant la commande chmod pour permettre à Docker d'accéder et d'écrire dans ces répertoires. Cette solution a permis de résoudre les problèmes de droits d'accès pour Grafana et Loki, mais pourrait poser un problème de sécurité sur des environnements de production. Une solution plus propre serait d'ajuster les propriétaires des fichiers avec chown.
 
 Problèmes de configuration avec Loki :
 Problème : Loki n’a pas réussi à démarrer correctement en raison de configurations erronées dans le fichier loki-config.yaml. Les erreurs incluaient des champs mal configurés comme http, grpc, ou encore des périodes d'indexation inadéquates avec boltdb-shipper.
@@ -50,7 +50,7 @@ Résolution : La structure des volumes montés a été corrigée dans le fichier
 
 3. Problème de création de dossiers par Loki :
 Problème : Une erreur persistait concernant la création du dossier WAL pour Loki, où le message "permission denied" apparaissait lors de la création du répertoire /wal.
-Résolution : Les permissions du système de fichiers ont été ajustées pour permettre à Loki de créer les répertoires nécessaires. En modifiant les permissions des dossiers via chmod 777 et en vérifiant les montages de volumes, le problème a été résolu. Cependant, cela pourrait nécessiter une optimisation future avec des permissions plus restrictives pour des raisons de sécurité.
+Résolution : Les permissions du système de fichiers ont été ajustées pour permettre à Loki de créer les répertoires nécessaires. En modifiant les permissions des dossiers via chmod et en vérifiant les montages de volumes, le problème a été résolu. Cependant, cela pourrait nécessiter une optimisation future avec des permissions plus restrictives pour des raisons de sécurité.
 
 4. Problème d’incompatibilité de la configuration d'indexation :
 Problème : L’erreur « invalid schema config: boltdb-shipper works best with 24h periodic index config » indiquait que la configuration d'indexation de Loki n'était pas conforme aux bonnes pratiques pour le stockage boltdb-shipper.
@@ -63,7 +63,7 @@ Résolution : Les montages des volumes ont été corrigés, et les permissions d
 Conclusion :
 Le projet a mis en lumière plusieurs aspects techniques clés concernant la configuration de systèmes de logs distribués, notamment l'importance des permissions et de la configuration correcte des volumes pour les services conteneurisés. Bien que des erreurs liées aux permissions et à la configuration des fichiers YAML aient ralenti l'implémentation, ces obstacles ont été surmontés grâce à des ajustements successifs.
 
-Importance des permissions : La gestion des permissions sur les systèmes de fichiers sous Docker est cruciale, et l'utilisation de chmod 777, bien qu'efficace pour les tests locaux, n'est pas idéale en production.
+Importance des permissions : La gestion des permissions sur les systèmes de fichiers sous Docker est cruciale, et l'utilisation de chmod, bien qu'efficace pour les tests locaux, n'est pas idéale en production.
 Précision dans la configuration : Les fichiers YAML doivent être soigneusement rédigés et conformes aux spécifications des services sous peine de dysfonctionnements.
 Utilisation des bonnes pratiques : L'utilisation de boltdb-shipper nécessite des périodes d'indexation de 24h pour assurer un bon fonctionnement, comme recommandé par Loki.
 Améliorations Futures
